@@ -1,3 +1,0 @@
-minLen=10
-maxLen=32
-initLen=32
