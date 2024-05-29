@@ -68,3 +68,23 @@ e.g, running Nexus on `InvPendulum`:
 
 The safe implementation of NN controller of `InvPendulumNN` will be generated in output/InvPendulum/InvPendulumNN.cpp
 
+## Workarounds ##
+
+1. If you encounter "Terminated due to large over-approximation error" during reachability analysis phase:
+- Consider reducing flowpipe_step_size in input/polar-parameters.txt
+- Consider clipping initial conditions into smaller ranges in input/spec-<name>.txt. Then, execute 'Running only reachability'. The input_range.txt will be available in output/<name>/. Do for all smaller ranges. Create a new file input_range.txt by mentioning max and min of ranges and execute 'Running only quantization'
+
+2. As of now, Nexus only accepts plant variables as NN inputs. If your NN input has linear combination of plant variables like in ACC (x0,x1,x5,x2-x3,x4-x5), then create a linear transformation matrix as first layer as shown in spec-ACC3.txt. Modify print in spec-ACC3.txt to print required ranges by executing 'Running only reachability'. Then create input_range.txt in format provided and then execute 'Running only quantization'.
+
+## Workarounds ##
+
+1. If you encounter a "Terminated due to large over-approximation error" during the reachability analysis phase:
+   - Consider reducing the `flowpipe_step_size` parameter in the `input/polar-parameters.txt` file.
+   - Try clipping the initial conditions into smaller ranges in the `input/spec-<name>.txt` file. Then, execute the 'Running only reachability' script. The `input_range.txt` file will be generated in the `output/<name>/` directory. Repeat this process for all smaller ranges. Finally, create a new file named `input_range.txt` by specifying the maximum and minimum ranges, and execute the 'Running only quantization' script.
+
+2. If your neural network inputs includes a linear combination of plant variables, such as (x0, x1, x5, x2-x3, x4-x5) in ACC3 , you can create a linear transformation matrix as the first layer, as shown in the `spec-ACC3.txt` file. Modify the print statements in `spec-ACC3.txt` to output the required ranges and execute the 'Running only reachability' script. Then, create the `input_range.txt` file in the specified format and execute the 'Running only quantization' script.
+
+
+
+
+
