@@ -11,7 +11,7 @@ Nexus is a two-phase framework that integrates safety verification of neural net
 
 - **Download POLAR**
   ```bash
-  git clone https://github.com/ChaoHuang2018/POLAR_Tool -b 13d42b0
+  git clone https://github.com/ChaoHuang2018/POLAR_Tool
   ```
 
 - **Download Aster**
