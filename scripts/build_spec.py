@@ -266,7 +266,7 @@ def create_polar_file(spec_file,spec_name,plant,controller,tool):
 	nn_file = spec_name + "_nn"
 
 	f = open(polar_file,'w')
-	f.write('#include "../../POLAR/POLAR/NeuralNetwork.h"\n#include <chrono>\n')
+	f.write('#include "../../POLAR_Tool/POLAR/NeuralNetwork.h"\n#include <chrono>\n')
 	f.write('using namespace std;\nusing namespace flowstar;\n\n')
 	f.write('int main(int argc, char *argv[])\n{\n')
 	f.write('cout<<endl<<"Safety verification started...";\n')
@@ -452,7 +452,7 @@ def create_nn_file(spec_name,plant,controller):
 def create_make_file(spec_name):
 	print("Creating Makefile...")
 	f = open("output/" + spec_name + "/" + "Makefile",'w')
-	f.write('CXX = g++\nHOME= /usr/local/include\nPOLAR_HOME = ../../POLAR/POLAR\nFLOWSTAR_HOME = ../../POLAR/flowstar/flowstar-toolbox\nLIBS = -lpolar -lflowstar -lmpfr -lgmp -lgsl -lgslcblas -lm -lglpk -lpthread\nCFLAGS = -I . -I $(HOME) -g -std=c++11\nLINK_FLAGS = -g  -L$(POLAR_HOME) -L$(FLOWSTAR_HOME) -L/usr/local/lib\n\n')
+	f.write('CXX = g++\nHOME= /usr/local/include\nPOLAR_HOME = ../../POLAR_Tool/POLAR\nFLOWSTAR_HOME = ../../POLAR_Tool/flowstar/flowstar-toolbox\nLIBS = -lpolar -lflowstar -lmpfr -lgmp -lgsl -lgslcblas -lm -lglpk -lpthread\nCFLAGS = -I . -I $(HOME) -g -std=c++11\nLINK_FLAGS = -g  -L$(POLAR_HOME) -L$(FLOWSTAR_HOME) -L/usr/local/lib\n\n')
 	f.write('all:run\n\n'.format(spec_name))
 	f.write('run:{}.o\n	g++ -w $(LINK_FLAGS) -o $@ $^ $(LIBS)\n\n'.format(spec_name,spec_name))
 	f.write('%.o: %.cpp\n	$(CXX) -c $(CFLAGS) -o $@ $<\n\n')
