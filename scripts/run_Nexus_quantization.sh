@@ -30,7 +30,7 @@ layer=$(tail -n 1 ${input_range_file} | cut -d'=' -f2)
 
 	mv output/${spec_name}NN.cpp ../output/${spec_name}/
 	if [ $? -ne 0 ]; then
-        echo -e "\nQuantization is infeasible. Exiting Nexus... :("
+        echo -e "\nQuantization is infeasible. Exiting Nexus..."
         end_global=$(date +%s.%N)
         elapsed=$(echo "$end_global - $start_global" | bc -l)
         printf "\nNexus execution time: %.3f seconds\n" "$elapsed"

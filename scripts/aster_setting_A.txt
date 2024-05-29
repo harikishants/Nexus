@@ -1,0 +1,3 @@
+minLen=5
+maxLen=32
+initLen=20

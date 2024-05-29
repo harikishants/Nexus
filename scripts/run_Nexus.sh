@@ -19,7 +19,7 @@ layer=$(tail -n 1 input_range.txt | cut -d'=' -f2)
 
 first_line=$(head -n 1 input_range.txt)
 if [ "$first_line" == "SAFE" ]; then
-	echo "CPS is $first_line. Generating $first_line implementation... :)"
+	echo "CPS is $first_line. Generating $first_line implementation..."
 
 	cd ../../
 	echo -e "\n*********************Reachability analysis completed*********************\n"
@@ -39,7 +39,7 @@ if [ "$first_line" == "SAFE" ]; then
 
 	mv output/${spec_name}NN.cpp ../output/${spec_name}/
 	if [ $? -ne 0 ]; then
-        echo -e "\nQuantization is infeasible. Exiting Nexus... :("
+        echo -e "\nQuantization is infeasible. Exiting Nexus..."
         end_global=$(date +%s.%N)
         elapsed=$(echo "$end_global - $start_global" | bc -l)
         printf "\nNexus execution time: %.3f seconds\n" "$elapsed"
@@ -53,9 +53,9 @@ if [ "$first_line" == "SAFE" ]; then
 	/var/tmp/Vitis_HLS/2023.2/bin/vitis_hls Aster/scripts/qnn/vivado_compile_general.tcl output/${spec_name}/${spec_name}NN nn1 output/${spec_name}/${spec_name}NN.cpp
 	echo -e "\n**********************Design synthesis completed**********************\n"
 elif [ "$first_line" == "UNSAFE" ]; then
-	echo -e "\nCPS is $first_line. Exiting Nexus... :|"
+	echo -e "\nCPS is $first_line. Exiting Nexus..."
 else
-	echo -e "\nReachability terminated. Exiting Nexus... :("
+	echo -e "\nReachability terminated. Exiting Nexus..."
 fi
 
 end_global=$(date +%s.%N)
